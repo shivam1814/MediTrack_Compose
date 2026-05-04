@@ -60,12 +60,14 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     //room
-    implementation(libs.androidx.room3.runtime)
-    implementation(libs.androidx.room3.ktx)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
 
     //ksp
-    ksp(libs.androidx.room3.compiler)
+    ksp(libs.androidx.room.compiler)
 
     //datastore
     implementation(libs.androidx.datastore)
+
+    implementation(libs.androidx.navigation.compose)
 }
