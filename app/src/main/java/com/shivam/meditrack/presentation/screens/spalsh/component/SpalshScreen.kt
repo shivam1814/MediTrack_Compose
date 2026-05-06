@@ -3,26 +3,48 @@ package com.shivam.meditrack.presentation.screens.spalsh.component
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.shivam.meditrack.R
+import com.shivam.meditrack.ui.theme.InterFontFamily
+import com.shivam.meditrack.ui.theme.MediTrackTheme
 import com.shivam.meditrack.ui.theme.Spacing
+import com.shivam.meditrack.ui.theme.black
 import com.shivam.meditrack.ui.theme.primary
 import com.shivam.meditrack.ui.theme.white
 
 @Preview(showSystemUi = true)
+@Composable
+fun SplashScreenPreview() {
+
+    MediTrackTheme {
+        SplashScreen()
+    }
+
+}
+
 @Composable
 fun SplashScreen() {
 
@@ -38,7 +60,7 @@ fun SplashScreen() {
     ) {
 
         Box(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
 
             Image(
@@ -59,16 +81,40 @@ fun SplashScreen() {
                     .offset(x = -Spacing.s75)
             )
 
-
-            Image(
-                contentDescription = null,
-                painter = painterResource(R.drawable.ic_capsule_logo),
+            Column(
                 modifier = Modifier
-                    .padding(top = Spacing.s80)
-                    .size(Spacing.s210)
-                    .align(Alignment.TopCenter)
-            )
+                    .fillMaxWidth()
+                    .padding(top = Spacing.s80),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    contentDescription = null,
+                    painter = painterResource(R.drawable.ic_capsule_logo),
+                    modifier = Modifier
+                        .size(Spacing.s210)
+                )
 
+                Text(
+                    text = "MediTrack",
+                    fontFamily = InterFontFamily,
+                    fontSize = 58.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                Spacer(
+                    modifier = Modifier.height(10.dp)
+                )
+
+                Text(
+                    text = "Never miss your medicine again",
+                    fontFamily = InterFontFamily,
+                    fontSize = 19.sp,
+                    color = Color(0xFF3E4949),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
 
         }
 
