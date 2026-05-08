@@ -13,7 +13,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.shivam.meditrack.presentation.screens.spalsh.component.SplashScreen
+import com.shivam.meditrack.presentation.screens.spalsh.SplashScreen
 
 @Composable
 fun AppNavGraph(
