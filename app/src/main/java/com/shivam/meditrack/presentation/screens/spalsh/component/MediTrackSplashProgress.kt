@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.shivam.meditrack.ui.theme.Spacing
 import com.shivam.meditrack.ui.theme.primary
 import com.shivam.meditrack.ui.theme.progressSplashBack
 import com.shivam.meditrack.ui.theme.tertiary
@@ -36,15 +37,15 @@ fun MediTrackSplashProgress(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(14.dp)
-            .clip(RoundedCornerShape(50.dp))
+            .height(Spacing.s14)
+            .clip(RoundedCornerShape(Spacing.s50))
             .background(progressSplashBack)
 
     ) {
         Box(
             modifier = Modifier
-                .padding(4.dp)
-                .clip(RoundedCornerShape(50.dp))
+                .padding(Spacing.s4)
+                .clip(RoundedCornerShape(Spacing.s50))
                 .fillMaxWidth(progress.coerceIn(0f, 1f))
                 .fillMaxHeight()
                 .background(primary)

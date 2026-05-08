@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,6 +16,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -24,8 +27,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -61,7 +66,7 @@ fun SplashScreen() {
             initialValue = 0f,
             targetValue = 1f,
             animationSpec = tween(4000)
-        ) { value,_ ->
+        ) { value, _ ->
             progress = value
         }
     }
@@ -99,7 +104,7 @@ fun SplashScreen() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp),
+                .padding(horizontal = Spacing.s20),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -114,7 +119,7 @@ fun SplashScreen() {
             Text(
                 text = "MediTrack",
                 fontFamily = InterFontFamily,
-                fontSize = 58.sp,
+                fontSize = Spacing.t58,
                 color = Color(0xFF191C1D),
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
@@ -127,7 +132,7 @@ fun SplashScreen() {
             Text(
                 text = "Never miss your medicine again",
                 fontFamily = InterFontFamily,
-                fontSize = 19.sp,
+                fontSize = Spacing.t19,
                 color = Color(0xFF3E4949),
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()

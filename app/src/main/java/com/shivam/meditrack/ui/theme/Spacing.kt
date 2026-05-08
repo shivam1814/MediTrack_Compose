@@ -2,8 +2,11 @@ package com.shivam.meditrack.ui.theme
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 object Spacing {
+
+    //Spacing
 
     val default: Dp = 0.dp
     val s1: Dp = 1.dp
@@ -11,13 +14,16 @@ object Spacing {
     val s8: Dp = 8.dp
     val s10: Dp = 10.dp
     val s12: Dp = 12.dp
+    val s14: Dp = 14.dp
     val s16: Dp = 16.dp
+    val s20: Dp = 20.dp
     val s24: Dp = 24.dp
     val s32: Dp = 32.dp
     val s36: Dp = 36.dp
     val s40: Dp = 40.dp
     val s44: Dp = 44.dp
     val s48: Dp = 48.dp
+    val s50: Dp = 50.dp
     val s52: Dp = 52.dp
     val s54: Dp = 54.dp
     val s60: Dp = 60.dp
@@ -34,4 +40,9 @@ object Spacing {
     val s260: Dp = 260.dp
     val s270: Dp = 270.dp
     val s280: Dp = 280.dp
+
+    //text space
+    val t58 = 58.sp
+    val t19 = 19.sp
+
 }
