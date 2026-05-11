@@ -4,4 +4,6 @@ sealed class NavRoute(val route:String) {
 
     data object SplashScreen : NavRoute("splashScreen")
 
+    data object OnBoardingScreen : NavRoute("OnBoardingScreen")
+
 }

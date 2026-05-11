@@ -20,3 +20,5 @@ val secondary: Color = Color(0xFF5B7D7D)
 val tertiary: Color = Color(0xFF28A745)
 
 val progressSplashBack:Color = Color(0xFFF2F4F5)
+
+val splashProgress : Color = Color(0xFF006565)

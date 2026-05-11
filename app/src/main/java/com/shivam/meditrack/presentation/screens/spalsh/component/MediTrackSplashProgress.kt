@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.shivam.meditrack.ui.theme.Spacing
 import com.shivam.meditrack.ui.theme.primary
 import com.shivam.meditrack.ui.theme.progressSplashBack
+import com.shivam.meditrack.ui.theme.splashProgress
 import com.shivam.meditrack.ui.theme.tertiary
 import com.shivam.meditrack.ui.theme.white
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
@@ -48,7 +49,7 @@ fun MediTrackSplashProgress(
                 .clip(RoundedCornerShape(Spacing.s50))
                 .fillMaxWidth(progress.coerceIn(0f, 1f))
                 .fillMaxHeight()
-                .background(primary)
+                .background(splashProgress)
         )
 
     }

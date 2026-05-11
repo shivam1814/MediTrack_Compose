@@ -1,5 +1,7 @@
 package com.shivam.meditrack.presentation.screens.spalsh
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -18,6 +20,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -31,11 +34,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.shivam.meditrack.R
 import com.shivam.meditrack.presentation.screens.spalsh.component.MediTrackSplashProgress
 import com.shivam.meditrack.ui.theme.InterFontFamily
@@ -55,11 +61,13 @@ fun SplashScreenPreview() {
 }
 
 @Composable
-fun SplashScreen() {
+fun SplashScreen(navController: NavController = rememberNavController()) {
+
 
     var progress by remember {
         mutableFloatStateOf(0f)
     }
+
 
     LaunchedEffect(Unit) {
         animate(
@@ -116,10 +124,10 @@ fun SplashScreen() {
                     .size(Spacing.s210),
             )
 
+
             Text(
                 text = "MediTrack",
-                fontFamily = InterFontFamily,
-                fontSize = Spacing.t58,
+                style = MaterialTheme.typography.displayLarge,
                 color = Color(0xFF191C1D),
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
@@ -131,8 +139,7 @@ fun SplashScreen() {
 
             Text(
                 text = "Never miss your medicine again",
-                fontFamily = InterFontFamily,
-                fontSize = Spacing.t19,
+                style = MaterialTheme.typography.bodyLarge,
                 color = Color(0xFF3E4949),
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
