@@ -29,6 +29,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.shivam.meditrack.presentation.screens.components.TopAppBar
+import com.shivam.meditrack.presentation.screens.onBoarding.components.OnBoardingContent1
 import com.shivam.meditrack.ui.theme.Pink40
 import com.shivam.meditrack.ui.theme.Purple40
 import com.shivam.meditrack.ui.theme.PurpleGrey40
@@ -69,13 +71,21 @@ fun OnBoardingScreen() {
                 .systemBarsPadding()
         ) {
 
+
+            TopAppBar(
+                modifier = Modifier.fillMaxWidth(),
+                showBackIcon = false,
+                showProfileIcon = false,
+                showNotificationIcon = false
+            )
+
             HorizontalPager(
                 state = pagerState,
                 modifier = Modifier.weight(1f)
             ) { page ->
 
                 when (page) {
-                    0 -> Screen1()
+                    0 -> OnBoardingContent1()
                     1 -> Screen2()
                     2 -> Screen3()
                 }

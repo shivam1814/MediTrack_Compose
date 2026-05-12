@@ -69,5 +69,9 @@ dependencies {
     //datastore
     implementation(libs.androidx.datastore)
 
+    //navigation
     implementation(libs.androidx.navigation.compose)
+
+    //coil
+    implementation("io.coil-kt:coil-compose:2.6.0")
 }
