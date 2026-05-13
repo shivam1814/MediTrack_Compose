@@ -1,9 +1,14 @@
 package com.shivam.meditrack.presentation.screens.onBoarding
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,37 +17,39 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.shivam.meditrack.presentation.screens.components.TopAppBar
 import com.shivam.meditrack.presentation.screens.onBoarding.components.OnBoardingContent1
+import com.shivam.meditrack.presentation.screens.onBoarding.components.OnBoardingContent2
 import com.shivam.meditrack.ui.theme.Pink40
-import com.shivam.meditrack.ui.theme.Purple40
-import com.shivam.meditrack.ui.theme.PurpleGrey40
 import com.shivam.meditrack.ui.theme.Spacing
-import com.shivam.meditrack.ui.theme.secondary
+import com.shivam.meditrack.ui.theme.pagerUnSelectedDot
+import com.shivam.meditrack.ui.theme.splashProgress
 import com.shivam.meditrack.ui.theme.tertiary
 import com.shivam.meditrack.ui.theme.white
 import kotlinx.coroutines.launch
 
 @Composable
 @Preview(showSystemUi = true)
-fun Preview() {
+fun PreviewOnBoardingScreen() {
 
     OnBoardingScreen()
 
@@ -50,6 +57,20 @@ fun Preview() {
 
 @Composable
 fun OnBoardingScreen() {
+
+    val infiniteTransition = rememberInfiniteTransition(label = "")
+
+    val angle by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(
+                durationMillis = 15000,
+                easing = LinearEasing
+            )
+        ),
+        label = ""
+    )
 
     val pagerState = rememberPagerState(
         initialPage = 0,
@@ -85,8 +106,8 @@ fun OnBoardingScreen() {
             ) { page ->
 
                 when (page) {
-                    0 -> OnBoardingContent1()
-                    1 -> Screen2()
+                    0 -> OnBoardingContent1(angle)
+                    1 -> OnBoardingContent2()
                     2 -> Screen3()
                 }
 
@@ -95,20 +116,10 @@ fun OnBoardingScreen() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(Spacing.s20),
+                    .padding(start = Spacing.s20, end = Spacing.s20, bottom = Spacing.s10),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-
-                TextButton(
-                    onClick = {
-                        coroutineScope.launch {
-                            pagerState.animateScrollToPage(2)
-                        }
-                    }
-                ) {
-                    Text(text = "Skip")
-                }
 
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -118,22 +129,20 @@ fun OnBoardingScreen() {
                         val isSelected = pagerState.currentPage == index
 
                         val width by animateDpAsState(
-                            targetValue = if (isSelected) 24.dp else 8.dp,
+                            targetValue = if (isSelected) 32.dp else 8.dp,
                             animationSpec = tween(
-                                durationMillis = 300
+                                durationMillis = 200
                             ),
                             label = ""
                         )
 
                         val color by animateColorAsState(
-                            targetValue = if (isSelected) Purple40 else PurpleGrey40,
+                            targetValue = if (isSelected) splashProgress else pagerUnSelectedDot,
                             animationSpec = tween(
                                 durationMillis = 300
                             ),
                             label = ""
                         )
-
-
 
                         Box(
                             modifier = Modifier
@@ -147,26 +156,41 @@ fun OnBoardingScreen() {
 
                 }
 
-                Button(
-                    onClick = {
-                        coroutineScope.launch {
-                            if (pagerState.currentPage < 2) {
-                                pagerState.animateScrollToPage(pagerState.currentPage + 1)
-                            } else {
 
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(50.dp))
+                        .background(
+                            brush = Brush.linearGradient(
+                                colors = listOf(
+                                    Color(0xFF006565),
+                                    Color(0xFF008080)
+                                ),
+                                start = Offset.Zero,
+                                end = Offset.Infinite
+                            )
+                        )
+                        .clickable {
+                            coroutineScope.launch {
+                                if (pagerState.currentPage < 2) {
+                                    pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                                } else {
+
+                                }
                             }
                         }
-
-                    }
+                        .width(140.dp)
+                        .padding(vertical = 10.dp),
+                    contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = if (pagerState.currentPage == 2) {
-                            "start"
+                            "Start"
                         } else {
-                            "next"
-                        }
+                            "Next"
+                        },
+                        color = white
                     )
-
                 }
 
             }
@@ -177,18 +201,6 @@ fun OnBoardingScreen() {
 
 }
 
-
-@Composable
-fun Screen1() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(secondary),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "Screen 1")
-    }
-}
 
 @Composable
 fun Screen2() {

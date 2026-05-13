@@ -24,3 +24,5 @@ val progressSplashBack: Color = Color(0xFFF2F4F5)
 val splashProgress: Color = Color(0xFF006565)
 
 val backIconColor: Color = Color(0xFF64748B)
+
+val pagerUnSelectedDot:Color = Color(0xFFBDC9C8)
