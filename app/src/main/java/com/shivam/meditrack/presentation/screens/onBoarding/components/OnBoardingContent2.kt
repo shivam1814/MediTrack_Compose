@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -85,13 +86,55 @@ fun AdherenceContent() {
 
     BoxWithConstraints(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .padding(top = Spacing.s20),
         contentAlignment = Alignment.Center
     ) {
 
         val width = maxWidth
 
-        AdherenceItem(width)
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(vertical = 44.dp, horizontal = 20.dp)
+                .shadow(
+                    elevation = 20.dp,
+                    shape = RoundedCornerShape(32.dp),
+                    ambientColor = Color.Black.copy(alpha = 0.2f),
+                    spotColor = Color.Black.copy(alpha = 0.2f)
+                )
+                .background(white),
+            contentAlignment = Alignment.Center
+        ) {
+
+            CircularProgressIndicator(
+                progress = { 0.8f },
+                modifier = Modifier.fillMaxSize().align(Alignment.Center)
+            )
+
+        }
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            AdherenceItem(
+                width,
+                R.drawable.ic_correct, "STATUS",
+                "All Taken",
+                Color(0xFF83FC8E),
+                modifier = Modifier.align(Alignment.End)
+            )
+            AdherenceItem(
+                width,
+                R.drawable.ic_history_gain,
+                "HISTORY",
+                "+12% Gain",
+                Color(0xFF93F2F2),
+                modifier = Modifier.align(alignment = Alignment.Start)
+            )
+        }
+
 
         /*Box(
             modifier = Modifier
@@ -115,19 +158,27 @@ fun AdherenceContent() {
 }
 
 @Composable
-fun AdherenceItem(width: Dp = 200.dp) {
+fun AdherenceItem(
+    width: Dp,
+    icon: Int,
+    txt1: String,
+    txt2: String,
+    color: Color,
+    modifier: Modifier
+) {
 
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .width(width / 2)
             .shadow(
                 elevation = 20.dp,
                 shape = RoundedCornerShape(32.dp),
-                ambientColor = Color.Black.copy(alpha = 0.2f),
-                spotColor = Color.Black.copy(alpha = 0.2f)
+                ambientColor = color,
+                spotColor = color
             )
             .background(white)
+
     ) {
 
         Row(
@@ -136,35 +187,11 @@ fun AdherenceItem(width: Dp = 200.dp) {
                 .padding(Spacing.s20)
         ) {
 
-            Box(
-                modifier = Modifier
-                    .size(48.dp)
-                    .clip(CircleShape)
-                    .background(Color(0xFF00852F)),
-                contentAlignment = Alignment.Center
-            ) {
-
-                Box(
-                    modifier = Modifier
-                        .size(20.dp)
-                        .clip(CircleShape)
-                        .background(Color(0xFFEBFFE6)),
-                    contentAlignment = Alignment.Center
-                ) {
-
-                    Image(
-                        painter = painterResource(R.drawable.ic_check),
-                        contentDescription = null,
-                        colorFilter = ColorFilter.tint(
-                            Color(0xFF00852F)
-                        ),
-                    )
-
-
-                }
-
-
-            }
+            Image(
+                painter = painterResource(icon),
+                contentDescription = null,
+                modifier = Modifier.size(48.dp)
+            )
 
             Spacer(modifier = Modifier.width(16.dp))
 
@@ -176,7 +203,7 @@ fun AdherenceItem(width: Dp = 200.dp) {
             ) {
 
                 Text(
-                    text = "STATUS",
+                    text = txt1,
                     style = MaterialTheme.typography.bodySmall,
                     color = Color(0xFF3E4949),
                     modifier = Modifier
@@ -184,7 +211,7 @@ fun AdherenceItem(width: Dp = 200.dp) {
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
-                    text = "All Taken",
+                    text = txt2,
                     style = MaterialTheme.typography.bodySmall,
                     color = Color(0xFF006923),
                     fontWeight = FontWeight.Bold,
